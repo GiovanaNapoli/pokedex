@@ -74,3 +74,16 @@ export const PokemonImage = styled.Image`
   width: 130px;
   height: 130px;
 `;
+
+export const ImageCardDetailLeftSide = styled.Image`
+  position: absolute;
+  width: 74px;
+  height: 32px;
+  left: 90px;
+  top: -10px;
+`;
+
+export const PokeballCardDetail = styled.Image`
+  position: absolute;
+  right: -20px;
+`;
