@@ -4,8 +4,8 @@ import { TouchableOpacityProps } from 'react-native';
 import { Pokemon, PokemonTypes } from '../../../types';
 
 
-import dotsImage from '../../../assets/dots.png'
-import pokeballCardImage from '../../../assets/pokeballCard.png';
+import dotsImage from '../../../assets/img/dots.png'
+import pokeballCardImage from '../../../assets/img/pokeballCard.png';
 
 type CardProps = {
   data: Pokemon

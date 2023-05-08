@@ -7,7 +7,7 @@ import { Card } from '../../components'
 import { api } from '../../services/api';
 import { Pokemon, PokemonType } from '../../types';
 
-import PokeballHeader from '../../assets/pokeball.png'
+import PokeballHeader from '../../assets/img/pokeball.png'
 
 type Request = {
   id: number;
