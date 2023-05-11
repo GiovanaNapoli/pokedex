@@ -13,7 +13,7 @@ export const PokemonCard = styled.TouchableOpacity<PokemonType>`
     flex-direction: row;
     padding: 20px;
     shadow-color: ${theme.colors.backgroundCard[type]};
-    shadow-offset: 10px 20px;
+    shadow-offset: 0px 5px;
     shadow-opacity: 0.8;
     shadow-radius: 10px;
     elevation: 5;

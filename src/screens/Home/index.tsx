@@ -1,6 +1,8 @@
 import React from 'react'
 import { FlatList, ListRenderItemInfo } from 'react-native';
 
+import {useNavigation} from '@react-navigation/native'
+
 import * as S from './styles'
 import { Card } from '../../components'
 
@@ -18,6 +20,8 @@ const Home = () => {
   const [pokemons, setPokemons] = React.useState<Pokemon[]>([]);
   const [offset, setOffset] = React.useState<number>(0);
   const [loading, setLoading] = React.useState<boolean>(false);
+
+  const { navigate } = useNavigation();
 
   const LIMIT_OF_POKEMONS = 20;
 
@@ -53,8 +57,10 @@ const Home = () => {
 
   React.useEffect(() => {loadAllPokemons()}, []);
 
+  const onPressCard = (pokemonId: number) =>  navigate('details', { pokemonId })
+
   const renderItem = React.useCallback(({item: pokemon, index}: ListRenderItemInfo<Pokemon>) => (
-    <Card key={index} data={pokemon} />
+    <Card key={index} data={pokemon} onPress={() => onPressCard(pokemon.id)} />
   ), [pokemons])
 
   return (
