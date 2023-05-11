@@ -88,3 +88,10 @@ export const PokemonTypeText = styled.Text`${({theme}) => css`
   textTransform: capitalize;
   color: ${theme.colors.background};
 `}`
+
+export const BackButton = styled.TouchableOpacity`
+  position: absolute;
+  top: 11.05%;
+  left: 30px;
+`;
+

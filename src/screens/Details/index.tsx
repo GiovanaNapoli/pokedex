@@ -1,8 +1,9 @@
 import React from 'react'
-import { useRoute } from '@react-navigation/native'
+import { useRoute, useNavigation } from '@react-navigation/native'
 import * as S from './styles'
 import { api } from '../../services/api'
 import { PokemonType, PokemonTypes } from '../../types'
+import { Feather } from '@expo/vector-icons'
 
 type RouteParams = {
   pokemonId: number
@@ -19,6 +20,8 @@ type PokemonDetails = {
 const Details = () => {
   const [pokemonDetails, setPokemonDetails] = React.useState<PokemonDetails>()
   const [loading, setLoading] = React.useState<boolean>(true);
+
+  const { goBack } = useNavigation();
 
   const route = useRoute();
   const { pokemonId } = route.params as RouteParams;
@@ -39,8 +42,6 @@ const Details = () => {
 
   React.useEffect(() => { getPokemonById() }, [pokemonId])
 
-  console.log(pokemonDetails)
-
   return loading ? (
     <S.LoadingScreen>
       
@@ -48,6 +49,9 @@ const Details = () => {
   ) : (
     <S.Container type={pokemonDetails?.types[0].type.name as PokemonTypes}>
       <S.Header>
+        <S.BackButton onPress={() => goBack()}>
+          <Feather name="arrow-left" size={24} color="#fff" />
+        </S.BackButton>
         <S.LeftSide>
           <S.PokemonImage source={{uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonDetails?.id}.png`}} />
         </S.LeftSide>
@@ -56,13 +60,14 @@ const Details = () => {
           <S.PokemonName>{pokemonDetails?.name}</S.PokemonName>
           <S.ContentType>
             {pokemonDetails?.types.map(({type}) => (
-              <S.PokemonType type={type.name as PokemonTypes}>
+              <S.PokemonType key={type.name} type={type.name as PokemonTypes}>
                 <S.PokemonTypeText>{type.name}</S.PokemonTypeText>
               </S.PokemonType>
             ))}
           </S.ContentType>
         </S.RightSide>
       </S.Header>
+
     </S.Container>
   );
 };
