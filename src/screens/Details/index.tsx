@@ -4,6 +4,7 @@ import * as S from './styles'
 import { api } from '../../services/api'
 import { PokemonType, PokemonTypes } from '../../types'
 import { Feather } from '@expo/vector-icons'
+import { TabsMenu } from '../../components'
 
 type RouteParams = {
   pokemonId: number
@@ -14,11 +15,17 @@ type PokemonDetails = {
   name: string;
   id: number;
   stats: { base_stat: number; effort: number; stat: { name: string; url: string; } }[];
-  abilities: {ability: { name: string; url: string; }}[];
+  abilities: { ability: { name: string; url: string; }}[];
+}
+
+enum MenuTabs {
+  ABOUT,
+  STATS,
+  EVOLUTIONS
 }
 
 const Details = () => {
-  const [pokemonDetails, setPokemonDetails] = React.useState<PokemonDetails>()
+  const [pokemonDetails, setPokemonDetails] = React.useState<PokemonDetails>();
   const [loading, setLoading] = React.useState<boolean>(true);
 
   const { goBack } = useNavigation();
@@ -40,7 +47,18 @@ const Details = () => {
     }
   }
 
-  React.useEffect(() => { getPokemonById() }, [pokemonId])
+  React.useEffect(() => { getPokemonById() }, [pokemonId]);
+
+  const tabs = [{
+    title: 'About',
+    value: MenuTabs.ABOUT
+  }, {
+    title: 'Stats',
+    value: MenuTabs.STATS
+  }, {
+    title: 'Evolution',
+    value: MenuTabs.EVOLUTIONS
+  }]
 
   return loading ? (
     <S.LoadingScreen>
@@ -67,7 +85,9 @@ const Details = () => {
           </S.ContentType>
         </S.RightSide>
       </S.Header>
-
+      <S.DetailsWrapper>
+        <TabsMenu tabs={tabs} />
+      </S.DetailsWrapper>
     </S.Container>
   );
 };

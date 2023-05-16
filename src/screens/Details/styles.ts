@@ -95,3 +95,7 @@ export const BackButton = styled.TouchableOpacity`
   left: 30px;
 `;
 
+export const DetailsWrapper = styled.View`
+  flex-direction: row;
+  width: 100%;
+`;
