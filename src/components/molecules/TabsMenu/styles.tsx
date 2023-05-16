@@ -1,7 +1,11 @@
 import styled from "styled-components/native";
 
 type MenuActions = {
-  tabActive: boolean
+  tabActive: boolean;
+}
+
+type MenuButton = {
+  tabsLength: number;
 }
 
 export const DetailsMenu = styled.View`
@@ -11,8 +15,8 @@ export const DetailsMenu = styled.View`
   justify-content: center;
 `;
 
-export const DetailMenuButton = styled.TouchableOpacity`
-  width: 33.33%;
+export const DetailMenuButton = styled.TouchableOpacity<MenuButton>`
+  ${(props) => `width: calc(100% / ${props.tabsLength});`}
   align-items: center;
   justify-content: center;
 `;

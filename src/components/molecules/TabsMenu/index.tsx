@@ -18,7 +18,7 @@ const TabsMenu = ({ tabs, setTabActive, tabActive }: TabsMenuProps) => {
   return (
     <S.DetailsMenu>
       {tabs.map(({title, value}) => (
-        <S.DetailMenuButton onPress={() => onPressTab(value)}>
+        <S.DetailMenuButton onPress={() => onPressTab(value)} tabsLength={tabs.length}>
           <S.DetailsMenuText tabActive={value === tabActive}>
             {title}
           </S.DetailsMenuText>
