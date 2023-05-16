@@ -9,10 +9,10 @@ import pokeballCardImage from '../../../assets/img/pokeballCard.png';
 
 type TabsMenuProps = {
   tabs: {title: string; value: number;}[]
-} & TouchableOpacityProps;
-
-const TabsMenu = ({ tabs }: TabsMenuProps) => {
-  const [tabActive, setTabActive] = React.useState<number>(0);
+  tabActive: number;
+  setTabActive: (value: number) => void;
+}
+const TabsMenu = ({ tabs, setTabActive, tabActive }: TabsMenuProps) => {
   const onPressTab = (value: number) => setTabActive(value);
 
   return (
