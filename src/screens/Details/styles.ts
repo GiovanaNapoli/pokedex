@@ -5,9 +5,8 @@ type PokemonType = {
   type: PokemonTypes
 }
 
-export const Container = styled.View<PokemonType>`${({theme, type}) => css`
+export const Container = styled.ScrollView<PokemonType>`${({theme, type}) => css`
     background-color: ${theme.colors.backgroundCard[type]};
-    padding: 20px;
     flex: 1;
   `}
 `;
@@ -48,12 +47,12 @@ export const PokemonImage = styled.Image`
 export const RightSide = styled.View`
 `;
 
-export const PokemonId = styled.Text`${({theme}) => css`
+export const PokemonId = styled.Text`
   font-weight: 700;
   font-size: 16px;
   line-height: 19px;
   color: rgba(23, 23, 27, 0.6);
-`}`;
+`;
 
 export const PokemonName = styled.Text`${({theme}) => css`
   font-weight: 700;
@@ -96,6 +95,14 @@ export const BackButton = styled.TouchableOpacity`
 `;
 
 export const DetailsWrapper = styled.View`
-  flex-direction: row;
   width: 100%;
+  padding: 20px;
 `;
+
+export const DetailsContent = styled.View`${({theme}) => css`
+  flex: 1;
+  background-color: ${theme.colors.background};
+  padding: 20px;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+`}`;

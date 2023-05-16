@@ -1,4 +1,5 @@
 import React from 'react'
+import { Text } from 'react-native'
 import { useRoute, useNavigation } from '@react-navigation/native'
 import * as S from './styles'
 import { api } from '../../services/api'
@@ -27,6 +28,7 @@ enum MenuTabs {
 const Details = () => {
   const [pokemonDetails, setPokemonDetails] = React.useState<PokemonDetails>();
   const [loading, setLoading] = React.useState<boolean>(true);
+  const [tabActive, setActive] = React.useState<number>(0);
 
   const { goBack } = useNavigation();
 
@@ -60,6 +62,8 @@ const Details = () => {
     value: MenuTabs.EVOLUTIONS
   }]
 
+  const Details: JSX.Element[] = [<Text>Pokédex Data</Text>, <Text>Base Stats</Text>, <Text>Evolution Chart</Text>]
+
   return loading ? (
     <S.LoadingScreen>
       
@@ -86,7 +90,10 @@ const Details = () => {
         </S.RightSide>
       </S.Header>
       <S.DetailsWrapper>
-        <TabsMenu tabs={tabs} />
+        <TabsMenu tabs={tabs} tabActive={tabActive} setTabActive={setActive}/>
+        <S.DetailsContent>
+          {Details[tabActive]}
+        </S.DetailsContent>
       </S.DetailsWrapper>
     </S.Container>
   );
